@@ -1,0 +1,5 @@
+C:\c# learn\VendingMachine\bin\Debug\VendingMachine.exe
+C:\c# learn\VendingMachine\bin\Debug\VendingMachine.pdb
+C:\c# learn\VendingMachine\obj\Debug\VendingMachine.csprojResolveAssemblyReference.cache
+C:\c# learn\VendingMachine\obj\Debug\VendingMachine.exe
+C:\c# learn\VendingMachine\obj\Debug\VendingMachine.pdb
