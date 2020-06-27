@@ -12,6 +12,15 @@ using System.Collections.Generic;
 
 namespace VendingMachine
 {
+	
+	public struct Item 
+	{
+		public int ItemId;
+		public int ItemPrice;
+		public int ItemAmmount;
+		public string ItemName;
+	}
+	
 	class Program
 	{
 		public static void Main(string[] args)
@@ -23,14 +32,34 @@ namespace VendingMachine
 			//Break of machine output (3% chance)
 			//Break of card reader
 			
+			Console.WriteLine("Type ammount of goods in vending machine");
+			int AmmountTypesOfGoods = int.Parse(Console.ReadLine());
+			
+			List<Item> Menu = new List<Item>();
+			Item placeholder;
+			placeholder.ItemId = 0;
+			placeholder.ItemPrice = 0;
+			placeholder.ItemAmmount = 0;
+			placeholder.ItemName = " ";
+			Menu.Add(placeholder);
+			
+			for(int i = 1; i <= AmmountTypesOfGoods; i++)
+			{
+				VendingMachine.Item item;
+				item.ItemId = i + 1;
+				Console.WriteLine("		Type price of item");
+				item.ItemPrice = int.Parse(Console.ReadLine());
+				Console.WriteLine("		Type ammount of item");
+				item.ItemAmmount = int.Parse(Console.ReadLine());
+				Console.WriteLine("		Type name of item");
+				item.ItemName = Console.ReadLine();
+				Menu.Add(item);
+			}
+			
+			
 			/*
 			
 			//Vending machine "initialization"
-			//Storage
-			string ItemName;
-			int ItemPrice;
-			int ItemAmmount;
-			int ItemId;
 			
 			int MachineBallance; //Machine bank(?) account money + coins.
 			int Ammount1;
@@ -57,11 +86,14 @@ namespace VendingMachine
 			{
 				Console.WriteLine("There are several goods to buy");
 				
-				//foreach Item in ItemDatabase print
-				//Console.WriteLine("Type {0} to buy {1}. Price is {2}. {3} of this good remain in storage", ItemId, ItemName, ItemPrice, Item Ammount);
-				//So that user can choose command for the buyed good  
-				//If there is no good of this type remain command for it should not be shown?
-				
+				for(int i = 1; i <= AmmountTypesOfGoods; i++)
+				{
+					if(Menu[i].ItemAmmount > 0)
+					{
+						Console.WriteLine("Type {0} to buy {1}. Price is {2}. {3} of this good remain in storage", i, Menu[i].ItemName, Menu[i].ItemPrice, Menu[i].ItemAmmount);	
+				    }
+				}
+						
 				Console.WriteLine("Type 0 to stop using machine");
 				Console.WriteLine("Invalid commands are ignored.");
 				Console.WriteLine("\n");
@@ -71,21 +103,15 @@ namespace VendingMachine
 					Console.WriteLine("This command is not a number");
 				}
 				
-				switch(UserCommand)
+				if((UserCommand > 0) && (UserCommand <= AmmountTypesOfGoods)) //FIXME item with ammount 0 can be bought
 				{
-					case 1:
-						//User orders item with ID 1;
-						//Proceed the buying logic
-						break;
-					case 0:
-						UseMachine = false;
-						Console.WriteLine("\n");
-						Console.WriteLine("Thank you for using our vending machine");
-						break;
-					default:
-						break;
-
+					Console.WriteLine("You bought {0}. Thank you for your purchase.", Menu[UserCommand].ItemName);
 				}
+				else if(UserCommand == 0)
+				{
+					Console.WriteLine("Thank you for using our vending machine");
+					UseMachine = false;
+				}		
 			}
 			Console.WriteLine("\n");
 			Console.Write("Press any key to exit application");
