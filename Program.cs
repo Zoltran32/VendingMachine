@@ -15,7 +15,6 @@ namespace VendingMachine
 	
 	public struct Item 
 	{
-		public int ItemId;
 		public int ItemPrice;
 		public int ItemAmmount;
 		public string ItemName;
@@ -37,7 +36,6 @@ namespace VendingMachine
 			
 			List<Item> Menu = new List<Item>();
 			Item placeholder;
-			placeholder.ItemId = 0;
 			placeholder.ItemPrice = 0;
 			placeholder.ItemAmmount = 0;
 			placeholder.ItemName = " ";
@@ -45,17 +43,15 @@ namespace VendingMachine
 			
 			for(int i = 1; i <= AmmountTypesOfGoods; i++)
 			{
-				VendingMachine.Item item;
-				item.ItemId = i + 1;
-				Console.WriteLine("		Type price of item");
+				Item item;
+				Console.Write("Type price of item {0}	  ",i);
 				item.ItemPrice = int.Parse(Console.ReadLine());
-				Console.WriteLine("		Type ammount of item");
+				Console.Write("Type ammount of item {0}   ",i);
 				item.ItemAmmount = int.Parse(Console.ReadLine());
-				Console.WriteLine("		Type name of item");
+				Console.Write("Type name of item {0}	  ",i);
 				item.ItemName = Console.ReadLine();
 				Menu.Add(item);
 			}
-			
 			
 			/*
 			
@@ -91,7 +87,7 @@ namespace VendingMachine
 					if(Menu[i].ItemAmmount > 0)
 					{
 						Console.WriteLine("Type {0} to buy {1}. Price is {2}. {3} of this good remain in storage", i, Menu[i].ItemName, Menu[i].ItemPrice, Menu[i].ItemAmmount);	
-				    }
+					}
 				}
 						
 				Console.WriteLine("Type 0 to stop using machine");
